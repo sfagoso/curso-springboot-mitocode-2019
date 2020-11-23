@@ -1,5 +1,7 @@
 package com.mitocode.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -43,9 +45,8 @@ public class DemoController {
 	
 	@GetMapping("/borrarUsuario/{id}")
 	public String borrarUsuario(@PathVariable("id") int id, Model model) {
-		Usuario us = repoUs.findById(id)
-				.orElseThrow(); // busca/encuentra usuario
-		repoUs.delete(us); // borra usuario
+		Optional<Usuario> us = repoUs.findById(id); // busca/encuentra usuario
+		repoUs.delete(us.get()); // borra usuario
 		
 		model.addAttribute("usuarios", repoUs.findAll());
 		
