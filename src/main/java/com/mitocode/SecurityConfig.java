@@ -12,11 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.mitocode.service.UserService;
 
 @Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableWebSecurity //notación habilita spring web security
+public class SecurityConfig extends WebSecurityConfigurerAdapter { //clase heredada, pedirá sobrescribir método para autenticación 
 	
 	@Autowired
-	private UserService userDetailsService;
+	private UserService userServ;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
@@ -27,11 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return bCrypPasswordEncoder;
 	}
 	
-	@Override
+	@Override // método sobre escrito
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
+		// desencripta contraseña usuarios
+		auth.userDetailsService(userServ).passwordEncoder(bcrypt);
 	}
 	
+	// obliga peticiones autenticadas
 	protected void config(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()

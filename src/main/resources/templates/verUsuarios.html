@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p></p>
+	<a href="/agregarUsuarios">Agregar Usuarios</a>
+    
+    <table align="center" border="1">
+    	<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Contraseña (encriptada)</td>
+				<td>Opciones</td>
+			</tr>
+		</thead>
+    	<th:block th:each="usr : ${usuarios}">
+    		<tr th:unless="${usr.nombre}=='Fragoso'">
+    			<td th:text="${usr.nombre}"></td>
+    			<td th:text="${usr.clave}"></td>
+    			<td><a th:href="@{/borrarUsuario/{id}(id=${usr.id})}">Eliminar</a></td>
+    			<!-- <input type="button" th:onclick="@{/borrarUsuario/{id}(id=${usr.id})}" value="Eliminar"> -->
+    		</tr>
+    	</th:block>
+    </table>
+    
+    <footer>
+		<p>Proyecto basado en la siguiente lista de reproducci&oacuten de videos</p>
+		<p><a href="https://www.youtube.com/playlist?list=PLvimn1Ins-40wR4PC-YtTQ5TKt3vRrVwl">Spring Boot - MitoCode</a></p>
+		<p><a href="https://www.youtube.com/watch?v=J-jB9mUlrak">Spring Boot Thymeleaf - Java Guides</a>
+		<p>Codigo</p>
+		<p>https://github.com/sfagoso/curso-springboot-mitocode-2019</p>
+	</footer>
+</body>
+</html>

@@ -15,20 +15,21 @@ import org.springframework.stereotype.Service;
 import com.mitocode.model.Usuario;
 import com.mitocode.repo.IUsuarioRepo;
 
-@Service
-public class UserService implements UserDetailsService{
+@Service // estereotipo indica servicio
+public class UserService implements UserDetailsService{// implementacion Spring, pedirá sobrescribir método
 
-	@Autowired
+	@Autowired // inyección para BD
 	private IUsuarioRepo repo;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario us = repo.findByNombre(username);
 		
-		List<GrantedAuthority> roles = new ArrayList<>();
-		roles.add(new SimpleGrantedAuthority("ADMIN"));
+		// GrantedAuthority de Spring Security define roles usuario
+		List<GrantedAuthority> listRoles = new ArrayList<>();
+		listRoles.add(new SimpleGrantedAuthority("ADMIN"));
 		
-		UserDetails userDet = new User(us.getNombre(), us.getClave(), roles);
+		UserDetails userDet = new User(us.getNombre(), us.getClave(), listRoles);
 		
 		return userDet;
 	}

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style=text-align:center>
+	<a href="/verUsuarios">Ver Usuarios</a>
+	<p></p>
+    
+    <h1>Agregar Usuarios aquí!!!</h1>
+    <form action="#" th:action="@{/agregarUsuario}" th:object="${usuario}" method="post">
+		<table align="center">
+			<thead>
+				<tr>
+					<td>Llena los campos para agregar un usuario</td>
+				</tr>
+			</thead>
+			<tr>
+				<td>Nombre</td>
+				<td><input type="text" th:field="*{nombre}" placeholder="Nombre de usuario" /></td>
+			</tr>
+			<tr>
+				<td>Clave</td>
+				<td><input type="text" th:field=*{clave} placeholder="Contraseña de usuario"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar" /></td>
+			</tr>
+		</table>
+	</form>
+    
+    <footer>
+		<p>Proyecto basado en la siguiente lista de reproducci&oacuten de videos</p>
+		<p><a href="https://www.youtube.com/playlist?list=PLvimn1Ins-40wR4PC-YtTQ5TKt3vRrVwl">Spring Boot - MitoCode</a></p>
+		<p><a href="https://www.youtube.com/watch?v=J-jB9mUlrak">Spring Boot Thymeleaf - Java Guides</a>
+		<p>Codigo</p>
+		<p>https://github.com/sfagoso/curso-springboot-mitocode-2019</p>
+	</footer>
+</body>
+</html>
