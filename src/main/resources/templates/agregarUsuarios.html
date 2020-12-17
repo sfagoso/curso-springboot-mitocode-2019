@@ -3,17 +3,18 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
-<body style=text-align:center>
+<body>
 	<a href="/verUsuarios">Ver Usuarios</a>
 	<p></p>
     
-    <h1>Agregar Usuarios aquí!!!</h1>
+    <h1>Agrega Usuarios</h1>
     <form action="#" th:action="@{/agregarUsuario}" th:object="${usuario}" method="post">
-		<table align="center">
+		<table>
 			<thead>
 				<tr>
-					<td>Llena los campos para agregar un usuario</td>
+					<th colspan="2">Llena los campos para agregar un usuario</th>
 				</tr>
 			</thead>
 			<tr>
@@ -21,7 +22,7 @@
 				<td><input type="text" th:field="*{nombre}" placeholder="Nombre de usuario" /></td>
 			</tr>
 			<tr>
-				<td>Clave</td>
+				<td>Contraseña</td>
 				<td><input type="text" th:field=*{clave} placeholder="Contraseña de usuario"></td>
 			</tr>
 			<tr>
@@ -30,7 +31,6 @@
 			</tr>
 		</table>
 	</form>
-    
     <footer>
 		<p>Proyecto basado en la siguiente lista de reproducci&oacuten de videos</p>
 		<p><a href="https://www.youtube.com/playlist?list=PLvimn1Ins-40wR4PC-YtTQ5TKt3vRrVwl">Spring Boot - MitoCode</a></p>

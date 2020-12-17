@@ -23,7 +23,7 @@ public class DemoController {
 	@Autowired
 	private BCryptPasswordEncoder encoder; // para codificar password
 		
-	@GetMapping("/agregarUsuarios") //direccion en navegador web
+	@GetMapping("/") //direccion en navegador web
 	public String greeting(Usuario usuario) { // COMPROBAR SI QUITANDO PARAMETRO USUARIO SIGUE FUNCIONANDO			
 		return "agregarUsuarios";	// nombre pagina html
 	}
