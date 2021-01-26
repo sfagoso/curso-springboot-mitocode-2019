@@ -24,7 +24,7 @@ public class DemoController {
 	private BCryptPasswordEncoder encoder; // para codificar password
 		
 	@GetMapping("/") //direccion en navegador web
-	public String greeting(Usuario usuario) { // COMPROBAR SI QUITANDO PARAMETRO USUARIO SIGUE FUNCIONANDO			
+	public String greeting() {			
 		return "agregarUsuarios";	// nombre pagina html
 	}
 	
@@ -34,15 +34,18 @@ public class DemoController {
 		return "verUsuarios";
 	}
 	
+	// TODO poner logica de negocio en su lugar 
 	@PostMapping("/agregarUsuario")
 	public String agregaUsuario(Usuario usuario, Model model) {
+		// TODO validar que el usuario sea unico
 		usuario.setClave(encoder.encode(usuario.getClave())); // codifica password
 		repoUs.save(usuario);
 		
 		model.addAttribute("usuarios", repoUs.findAll());
 		return "verUsuarios";
 	}
-	
+		
+	// TODO poner logica de negocio en su lugar
 	@GetMapping("/borrarUsuario/{id}")
 	public String borrarUsuario(@PathVariable("id") int id, Model model) {
 		Optional<Usuario> us = repoUs.findById(id); // busca/encuentra usuario
