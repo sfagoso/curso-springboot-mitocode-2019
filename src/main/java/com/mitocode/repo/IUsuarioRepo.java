@@ -9,4 +9,5 @@ import com.mitocode.model.Usuario;
 public interface IUsuarioRepo extends JpaRepository<Usuario, Integer>{
 	
 	Usuario findByNombre(String nombre); // equivalente: select * from usuario where nombre =
+	
 }

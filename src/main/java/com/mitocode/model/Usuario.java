@@ -5,13 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.lang.NonNull;
+
+import com.sun.istack.NotNull;
+
 @Entity
 public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	@NonNull
 	private String nombre;
+	@NonNull
 	private String clave;
 	
 	public int getId() {

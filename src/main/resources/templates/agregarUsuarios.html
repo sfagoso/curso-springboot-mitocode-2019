@@ -20,10 +20,12 @@
 			<tr>
 				<td>Nombre</td>
 				<td><input type="text" th:field="*{nombre}" placeholder="Nombre de usuario" /></td>
+				<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error en el nombre!!!</td>
 			</tr>
 			<tr>
 				<td>Contraseña</td>
 				<td><input type="text" th:field=*{clave} placeholder="Contraseña de usuario"></td>
+				<td th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">Error en la contraseña!!!</td>
 			</tr>
 			<tr>
 				<td></td>

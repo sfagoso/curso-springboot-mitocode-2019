@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +18,6 @@ import com.mitocode.repo.IUsuarioRepo;
 @Controller
 public class DemoController {
 	
-	// @Autowired inyecta dependencias
 	@Autowired 
 	private IUsuarioRepo repoUs; // consultas en BD
 	
@@ -24,7 +25,7 @@ public class DemoController {
 	private BCryptPasswordEncoder encoder; // para codificar password
 		
 	@GetMapping("/") //direccion en navegador web
-	public String greeting() {			
+	public String greeting(Usuario usuario) { // se envia el objeto usario para la vista			
 		return "agregarUsuarios";	// nombre pagina html
 	}
 	
@@ -34,23 +35,30 @@ public class DemoController {
 		return "verUsuarios";
 	}
 	
-	// TODO poner logica de negocio en su lugar 
+	// TODO cambiar ubicacion logica de negocio 
 	@PostMapping("/agregarUsuario")
-	public String agregaUsuario(Usuario usuario, Model model) {
-		// TODO validar que el usuario sea unico
-		usuario.setClave(encoder.encode(usuario.getClave())); // codifica password
-		repoUs.save(usuario);
-		
-		model.addAttribute("usuarios", repoUs.findAll());
-		return "verUsuarios";
+	public String agregaUsuario(Usuario usuario, Model model, BindingResult binding) { // se quitó @Validated
+		if(repoUs.findByNombre(usuario.getNombre()) == null && 
+				!usuario.getNombre().isEmpty() && !usuario.getClave().isEmpty()) {
+			
+			// codifica password
+			usuario.setClave(encoder.encode(usuario.getClave())); 
+			repoUs.save(usuario);
+			
+			model.addAttribute("usuarios", repoUs.findAll());
+			return "verUsuarios";
+			
+		} else {
+			
+			return "agregarUsuarios";
+		}
 	}
 		
-	// TODO poner logica de negocio en su lugar
+	// TODO cambiar ubicacion logica de negocio
 	@GetMapping("/borrarUsuario/{id}")
 	public String borrarUsuario(@PathVariable("id") int id, Model model) {
-		Optional<Usuario> us = repoUs.findById(id); // busca/encuentra usuario
-		repoUs.delete(us.get()); // borra usuario
-		
+		Optional<Usuario> us = repoUs.findById(id);
+		repoUs.delete(us.get());
 		model.addAttribute("usuarios", repoUs.findAll());
 		
 		return "verUsuarios";

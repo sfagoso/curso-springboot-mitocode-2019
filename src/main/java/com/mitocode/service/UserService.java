@@ -2,6 +2,7 @@ package com.mitocode.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +17,7 @@ import com.mitocode.model.Usuario;
 import com.mitocode.repo.IUsuarioRepo;
 
 @Service // estereotipo indica servicio
-public class UserService implements UserDetailsService{// implementacion Spring, pedirá sobrescribir método
+public class UserService implements UserDetailsService {// implementacion Spring, pedirá sobrescribir método
 
 	@Autowired // inyección para BD
 	private IUsuarioRepo repo;
@@ -33,5 +34,5 @@ public class UserService implements UserDetailsService{// implementacion Spring,
 		
 		return userDet;
 	}
-
+	
 }
