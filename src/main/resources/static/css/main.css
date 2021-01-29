@@ -1,10 +1,9 @@
+table {
+	align: center;
+}
+
 footer {
 	position: fixed;
 	margin-top: 250px;
 	bottom: 0;
 }
-
-table {
-	align: center;
-}
-

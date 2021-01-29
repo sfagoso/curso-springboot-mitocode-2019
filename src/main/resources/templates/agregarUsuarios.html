@@ -3,15 +3,15 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<a href="/verUsuarios">Ver Usuarios</a>
 	<p></p>
     
-    <h1>Agrega Usuarios</h1>
+    <h3 align="center">Agrega Usuarios</h3>
     <form action="#" th:action="@{/agregarUsuario}" th:object="${usuario}" method="post">
-		<table>
+		<table align="center">
 			<thead>
 				<tr>
 					<th colspan="2">Llena los campos para agregar un usuario</th>
