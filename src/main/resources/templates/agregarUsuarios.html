@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Demo encriptar contraseña</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
 </head>
 <body>
-	<a href="/verUsuarios">Ver Usuarios</a>
-	<p></p>
+<div class="container">
+	<h3>Sistema para encriptar contraseña</h3>
+
+	<a href="/verUsuarios" class="btn btn-primary btn-sm mb-3">Ver Usuarios</a>
     
-    <h3 align="center">Agrega Usuarios</h3>
     <form action="#" th:action="@{/agregarUsuario}" th:object="${usuario}" method="post">
-		<table align="center">
+		<table class="table">
 			<thead>
 				<tr>
 					<th colspan="2">Llena los campos para agregar un usuario</th>
@@ -19,20 +23,21 @@
 			</thead>
 			<tr>
 				<td>Nombre</td>
-				<td><input type="text" th:field="*{nombre}" placeholder="Nombre de usuario" /></td>
+				<td><input type="text" th:field="*{nombre}" placeholder="Nombre de usuario" class="form-control"/></td>
 				<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error en el nombre!!!</td>
 			</tr>
 			<tr>
 				<td>Contraseña</td>
-				<td><input type="text" th:field=*{clave} placeholder="Contraseña de usuario"></td>
+				<td><input type="text" th:field=*{clave} placeholder="Contraseña de usuario" class="form-control"/></td>
 				<td th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">Error en la contraseña!!!</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Guardar" /></td>
+				<td><input type="submit" value="Guardar" class="btn btn-info"/></td>
 			</tr>
 		</table>
 	</form>
+</div>
     <footer>
 		<p>Proyecto basado en la siguiente lista de reproducci&oacuten de videos</p>
 		<p><a href="https://www.youtube.com/playlist?list=PLvimn1Ins-40wR4PC-YtTQ5TKt3vRrVwl">Spring Boot - MitoCode</a></p>
