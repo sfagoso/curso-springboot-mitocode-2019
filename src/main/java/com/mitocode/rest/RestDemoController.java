@@ -23,10 +23,9 @@ public class RestDemoController {
 	public List<Usuario> findAll(){
 		return usServ.findAll();
 	}
-	/*
+	
 	@PostMapping
 	public void guardar(@RequestBody Usuario us) {
 		usServ.usuarioRepetido(us);
 	}
-	*/
 }
