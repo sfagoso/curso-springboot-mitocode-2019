@@ -17,7 +17,7 @@ import com.mitocode.model.Usuario;
 import com.mitocode.repo.IUsuarioRepo;
 
 @Service // estereotipo indica servicio
-public class UserService implements UserDetailsService {// implementacion Spring, pedirá sobrescribir método
+public class SecurityService implements UserDetailsService {// implementacion Spring, pedirá sobrescribir método
 
 	@Autowired // inyección para BD
 	private IUsuarioRepo repo;
