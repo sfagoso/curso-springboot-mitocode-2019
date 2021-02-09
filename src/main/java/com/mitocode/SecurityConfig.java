@@ -37,8 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //clase hered
 	
 	// obliga peticiones autenticadas
 	protected void config(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		   .antMatchers("/usuarioRest/**").permitAll();
+		http.csrf().disable()
+		.authorizeRequests()
+		.antMatchers(HttpMethod.POST, "/usuarioRest").permitAll()
+		.anyRequest().authenticated();
 		
 		/*// original
 		.authorizeRequests()
